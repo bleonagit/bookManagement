@@ -26,12 +26,12 @@ public class BookController {
         bookService.save(book);
     }
 
-    @PutMapping("update")
+    @PutMapping("/update")
     public void update(@RequestBody Book book){
         bookService.save(book);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public void delete(@RequestBody Book book){
         bookService.delete(book);
     }

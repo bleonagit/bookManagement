@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,9 @@ public class BookServiceImplementation implements BookService {
     }
 
     @Override
+    @Transactional
     public void delete(Book book) {
+        bookRepository.deleteReferences(book.getId());
         bookRepository.delete(book);
     }
 
