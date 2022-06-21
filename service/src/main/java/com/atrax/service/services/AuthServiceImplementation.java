@@ -46,10 +46,10 @@ public class AuthServiceImplementation implements AuthService {
         String jwt = tokenProvider.generateToken(authentication);
 
         return userRepository.findByUsername(loginCredentials.getUsername())
-                .map(e -> modelMapper.map(e, UserResponse.class))
-                .map(e -> {
-                    e.setToken(jwt);
-                    return e;
+                .map(user -> modelMapper.map(user, UserResponse.class))
+                .map(user -> {
+                    user.setToken(jwt);
+                    return user;
                 })
                 .orElseThrow(() -> new InvalidParameterException("INCORRECT USERNAME"));
     }
